@@ -21,7 +21,7 @@ export default function Error() {
         </button>
         <button
           onClick={() => router.push("/")}
-          className="bg-[#5F14E0] border border-[#5F14E0] text-xs sm:text-sm flex items-center gap-2 px-9 py-2 text-white rounded-md hover:cursor-pointer font-montserrat-medium"
+          className="bg-blue-700 border border-blue-700 text-xs sm:text-sm flex items-center gap-2 px-9 py-2 text-white rounded-md hover:cursor-pointer font-montserrat-medium"
         >
           Home
         </button>

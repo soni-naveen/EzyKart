@@ -6,31 +6,10 @@
   --font-montserrat-bold: "Montserrat Bold";
   --font-montserrat-italic: "Montserrat Italic";
   --font-montserrat-light: "Montserrat Light";
-  --font-Medium: "Medium";
-  --font-Orbitron: "Orbitron";
-  --font-bebas: "Bebas Neue";
   --breakpoint-xs: 480px;
   --breakpoint-xxs: 350px;
-  --color-primary: #8a00da;
 }
 
-@font-face {
-  font-family: "Medium";
-  src: url("/fonts/medium.otf") format("opentype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Orbitron";
-  src: url("/fonts/Orbitron-VariableFont_wght.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Bebas Neue";
-  src: url("/fonts/BebasNeue-Regular.ttf") format("truetype");
-  font-display: swap;
-}
 @font-face {
   font-family: "Montserrat Regular";
   src: url("/fonts/Montserrat-Regular.ttf") format("truetype");

@@ -1,41 +1,87 @@
 "use client";
 
-import React, { useState } from "react";
-import Navbar from "./components/Navbar";
-import { Products } from "./utils/data";
+import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { Filter } from "lucide-react";
+import { Products } from "./lib/data";
 import Sidebar from "./components/Sidebar";
 import ProductCard from "./components/ProductCard";
 
-export default function App() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filters, setFilters] = useState({
-    category: "All",
-    maxPrice: 1000,
-  });
+export default function Home() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const searchParams = useSearchParams();
 
-  const filteredProducts = Products.filter((product) => {
-    const matchesSearch =
-      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory =
-      filters.category === "All" || product.category === filters.category;
-    const matchesPrice = product.price <= filters.maxPrice;
+  const filteredProducts = useMemo(() => {
+    let filtered = [...Products];
 
-    return matchesSearch && matchesCategory && matchesPrice;
-  });
+    // Search filter
+    const searchQuery = searchParams.get("search");
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (product) =>
+          product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.description
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          product.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Category filter
+    const categoryFilter = searchParams.get("category");
+    if (categoryFilter) {
+      const categories = categoryFilter.split(",");
+      filtered = filtered.filter((product) =>
+        categories.includes(product.category)
+      );
+    }
+
+    // Brand filter
+    const brandFilter = searchParams.get("brand");
+    if (brandFilter) {
+      const brands = brandFilter.split(",");
+      filtered = filtered.filter((product) => brands.includes(product.brand));
+    }
+
+    // Price filter
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+    if (minPrice && maxPrice) {
+      filtered = filtered.filter(
+        (product) =>
+          product.price >= Number.parseInt(minPrice) &&
+          product.price <= Number.parseInt(maxPrice)
+      );
+    }
+
+    return filtered;
+  }, [searchParams]);
+
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <Sidebar filters={filters} onFiltersChange={setFilters} />
+            <Sidebar
+              isOpen={isSidebarOpen}
+              onClose={() => setIsSidebarOpen(false)}
+            />
           </div>
 
           {/* Product Grid */}
           <div className="lg:col-span-3">
+            {/* Mobile Filter Button */}
+            <div className="flex justify-between items-center mb-6 lg:hidden">
+              <h1 className="text-2xl font-bold">Products</h1>
+              <button
+                onClick={() => setIsSidebarOpen(true)}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                <Filter className="w-4 h-4" />
+                <span>Filters</span>
+              </button>
+            </div>
             <h2 className="text-2xl font-montserrat-bold mb-6">
               Product Listing
             </h2>
