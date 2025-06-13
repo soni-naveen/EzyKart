@@ -3,12 +3,7 @@
 import React from "react";
 import { Search, ShoppingCart } from "lucide-react";
 
-export default function Navbar({
-  onCartClick,
-  cartItemsCount,
-  searchTerm,
-  onSearchChange,
-}) {
+export default function Navbar({ searchTerm, onSearchChange }) {
   return (
     <>
       <header className="bg-blue-800 text-white p-4 sm:p-4">
@@ -31,16 +26,10 @@ export default function Navbar({
 
           <div className="flex items-center space-x-4">
             <button
-              onClick={onCartClick}
               className="flex items-center space-x-2 bg-blue-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
             >
               <ShoppingCart className="w-4 sm:w-5 h-4 sm:h-5" />
               <span className="text-xs xs:text-sm sm:text-base">Cart</span>
-              {cartItemsCount > 0 && (
-                <span className="bg-red-500 text-white rounded-full px-2 py-1 text-xs">
-                  {cartItemsCount}
-                </span>
-              )}
             </button>
           </div>
         </div>
