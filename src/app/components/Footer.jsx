@@ -3,7 +3,7 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-blue-900 text-white p-6 mt-12 text-xs xs:text-sm sm:text-base">
+    <footer className="bg-blue-900 text-white p-6 pt-12 text-xs xs:text-sm sm:text-base">
       <div className="container mx-auto grid md:grid-cols-3 gap-8">
         <div>
           <h3 className="text-base xs:text-lg sm:text-xl font-montserrat-medium mb-4">
@@ -29,12 +29,12 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:text-blue-300">
+              <a href="/about" className="hover:text-blue-300">
                 About Us
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-300">
+              <a href="/contact" className="hover:text-blue-300">
                 Contact
               </a>
             </li>
