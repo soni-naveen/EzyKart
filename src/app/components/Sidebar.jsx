@@ -102,7 +102,7 @@ function SidebarContent({ isOpen, onClose }) {
       {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-50 lg:hidden"
           onClick={onClose}
         />
       )}

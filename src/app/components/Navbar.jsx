@@ -23,26 +23,26 @@ function NavbarContent() {
 
   return (
     <>
-      <header className="sticky top-0 bg-blue-800 text-white p-4">
+      <header className="sticky top-0 z-50 bg-blue-800 text-white p-4">
         <div className="mx-auto flex items-center justify-between">
           <Link
             href="/"
             className="text-base xs:text-xl sm:text-2xl font-montserrat-medium"
           >
-            Logo
+            WBS
           </Link>
           <form
             onSubmit={handleSearch}
             className="flex-1 max-w-md mx-4 sm:mx-8"
           >
             <div className="relative">
-              <Search className="absolute left-2 xs:left-3 top-1/2 transform -translate-y-1/2 w-3 xs:w-4 h-3 xs:h-4 text-gray-200" />
+              <Search className="absolute left-2 xs:left-3 top-1/2 transform -translate-y-1/2 w-3 xs:w-4 h-3 xs:h-4 text-gray-300" />
               <input
                 type="text"
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-7 xs:pl-10 pr-4 py-2 rounded-lg text-gray-900 placeholder:text-gray-200 text-white outline-gray-300 outline-1 text-xs xs:text-sm sm:text-base"
+                className="w-full pl-7 xs:pl-10 pr-4 py-2 rounded-lg text-gray-900 placeholder:text-white/50 text-white outline-white/50 focus:outline-gray-200 outline-1 text-xs xs:text-sm sm:text-base"
               />
             </div>
           </form>
