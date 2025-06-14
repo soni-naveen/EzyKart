@@ -60,7 +60,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-2 bg-blue-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">
               <ShoppingCart className="w-4 sm:w-5 h-4 sm:h-5" />
               {totalItems > 0 && (
-                <span className="absolute top-2 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-montserrat-bold">
+                <span className="absolute top-2 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-montserrat-medium">
                   {totalItems}
                 </span>
               )}

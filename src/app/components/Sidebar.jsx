@@ -102,7 +102,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
       <div
         className={`
-            fixed lg:static inset-y-0 left-0 z-50 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:transform-none lg:shadow-none lg:w-56 xl:w-70
+            fixed inset-y-0 lg:inset-auto left-0 z-50 w-80 shadow-lg transform transition-transform duration-300 ease-in-out lg:transform-none lg:shadow-none lg:w-56 xl:w-70
             ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
         <div className="bg-blue-800 text-white p-6 lg:rounded-xl h-full overflow-y-auto">

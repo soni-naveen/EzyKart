@@ -67,7 +67,9 @@ export default function Cart() {
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="px-4 py-1 sm:py-1.5 border-x">{item.quantity}</span>
+                  <span className="px-4 py-1 sm:py-1.5 border-x">
+                    {item.quantity}
+                  </span>
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
                     className="p-2 hover:bg-gray-100"
@@ -92,7 +94,9 @@ export default function Cart() {
 
           <div className="bg-blue-50 rounded-lg p-6 mt-8">
             <div className="flex justify-between items-center text-base sm:text-lg font-montserrat-medium">
-              <span>Total: ${getTotalPrice().toFixed(2)}</span>
+              <p>
+                Total: <span className="font-montserrat-bold">${getTotalPrice().toFixed(2)}</span>
+              </p>
               <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                 Checkout
               </button>

@@ -3,17 +3,20 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { Star, Minus, Plus, ShoppingCart } from "lucide-react";
+import { Star, Minus, Plus, ShoppingCart, Check } from "lucide-react";
 import { Products } from "@/app/lib/data";
 import { useCartStore } from "@/app/lib/store";
 import NotFound from "@/app/not-found";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetailPage() {
+  const router = useRouter();
   const params = useParams();
   const [quantity, setQuantity] = useState(1);
   const addItem = useCartStore((state) => state.addItem);
+  const [added, setAdded] = useState(false);
 
-  const product = Products.find((p) => p.id === params.id);
+  const product = Products.find((p) => p.id == params.id);
 
   if (!product) {
     return <NotFound />;
@@ -22,6 +25,12 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addItem(product);
+      setAdded(true);
+
+      setTimeout(() => {
+        setAdded(false);
+        router.push("/cart");
+      }, 1500);
     }
   };
 
@@ -29,33 +38,18 @@ export default function ProductDetailPage() {
   const decrementQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
 
   return (
-    <div className="container py-8">
+    <div className="container mx-auto py-8 px-2">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Image Section */}
         <div className="space-y-4">
-          <div className="aspect-square relative overflow-hidden rounded-lg bg-gray-100">
+          <div className="h-[300px] sm:h-[350px] lg:h-[400px] relative overflow-hidden rounded-lg bg-white flex items-center justify-center">
             <Image
-              src={product.image || "/placeholder.svg"}
+              width={300}
+              height={300}
+              src={product.image}
               alt={product.title}
-              fill
-              className="object-cover"
+              className="object-contain"
             />
-          </div>
-
-          <div className="grid grid-cols-4 gap-4">
-            {[...Array(4)].map((_, i) => (
-              <div
-                key={i}
-                className="aspect-square relative overflow-hidden rounded-lg bg-gray-100 border-2 border-transparent hover:border-blue-500 cursor-pointer"
-              >
-                <Image
-                  src={product.image}
-                  alt={`${product.title} view ${i + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ))}
           </div>
         </div>
 
@@ -96,18 +90,6 @@ export default function ProductDetailPage() {
             </p>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Category</h3>
-            <span className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
-              {product.category}
-            </span>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-2">Brand</h3>
-            <span className="text-gray-600">{product.brand}</span>
-          </div>
-
           {/* Quantity Selector */}
           <div>
             <h3 className="text-lg font-semibold mb-2">Quantity</h3>
@@ -115,14 +97,16 @@ export default function ProductDetailPage() {
               <div className="flex items-center border border-gray-300 rounded-lg">
                 <button
                   onClick={decrementQuantity}
-                  className="p-2 hover:bg-gray-100 transition-colors"
+                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="px-4 py-2 font-semibold">{quantity}</span>
+                <span className="px-5 py-2 font-semibold border-x border-gray-300">
+                  {quantity}
+                </span>
                 <button
                   onClick={incrementQuantity}
-                  className="p-2 hover:bg-gray-100 transition-colors"
+                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -135,52 +119,18 @@ export default function ProductDetailPage() {
             onClick={handleAddToCart}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
           >
-            <ShoppingCart className="w-5 h-5" />
-            <span>Add to Cart</span>
+            {added ? (
+              <p className="flex items-center gap-2 justify-center">
+                <Check className="w-5 h-5" />
+                Added
+              </p>
+            ) : (
+              <p className="flex items-center gap-2 justify-center">
+                <ShoppingCart className="w-5 h-5" />
+                Add to Cart
+              </p>
+            )}
           </button>
-
-          {/* Reviews Section */}
-          <div className="border-t pt-6">
-            <h3 className="text-lg font-semibold mb-4">Customer Reviews</h3>
-            <div className="space-y-4">
-              {/* Sample Review */}
-              <div className="border-b pb-4">
-                <div className="flex items-center mb-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-yellow-400 fill-current"
-                      />
-                    ))}
-                  </div>
-                  <span className="ml-2 font-semibold">John D.</span>
-                </div>
-                <p className="text-gray-600">
-                  Great product! Exactly as described and fast shipping.
-                </p>
-              </div>
-
-              <div className="border-b pb-4">
-                <div className="flex items-center mb-2">
-                  <div className="flex items-center">
-                    {[...Array(4)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-yellow-400 fill-current"
-                      />
-                    ))}
-                    <Star className="w-4 h-4 text-gray-300" />
-                  </div>
-                  <span className="ml-2 font-semibold">Sarah M.</span>
-                </div>
-                <p className="text-gray-600">
-                  Good quality, though it took a bit longer to arrive than
-                  expected.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

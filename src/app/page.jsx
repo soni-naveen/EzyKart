@@ -73,7 +73,7 @@ export default function Home() {
           <div className="lg:col-span-3">
             {/* Mobile Filter Button */}
             <div className="flex justify-between items-center mb-6 lg:hidden">
-              <h1 className="text-lg sm:text-xl font-montserrat-medium">Product Listing</h1>
+              <h1 className="text-xl sm:text-2xl font-montserrat-medium">Product Listing</h1>
               <button
                 onClick={() => setIsSidebarOpen(true)}
                 className="flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
