@@ -56,7 +56,7 @@ export const useCartStore = create(
       },
     }),
     {
-      name: "cart-storage", // persisted in localStorage
+      name: "cart-storage",
     }
   )
 );
