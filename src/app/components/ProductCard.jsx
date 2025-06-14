@@ -61,12 +61,12 @@ export default function ProductCard({ product }) {
             }`}
           >
             {added ? (
-              <p className="flex items-center gap-1 justify-center">
+              <p className="flex items-center gap-2 justify-center">
                 <Check className="w-5 h-5" />
                 Added
               </p>
             ) : (
-              <p className="flex items-center gap-1 justify-center">
+              <p className="flex items-center gap-2 justify-center">
                 <ShoppingCart className="w-5 h-5" />
                 Add to Cart
               </p>

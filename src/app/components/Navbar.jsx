@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="bg-blue-800 text-white p-4">
+      <header className="sticky top-0 bg-blue-800 text-white p-4">
         <div className="mx-auto flex items-center justify-between">
           <Link
             href="/"

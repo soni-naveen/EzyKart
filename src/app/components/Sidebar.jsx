@@ -11,7 +11,7 @@ export default function Sidebar({ isOpen, onClose }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
-  const categories = ["All", "Electronics", "Clothing", "Home"];
+  const categories = ["All", "Electronics", "Clothing", "Furniture", "Fitness", "Accessories"];
 
   useEffect(() => {
     const categoryParam = searchParams.get("category");
@@ -134,8 +134,8 @@ export default function Sidebar({ isOpen, onClose }) {
             ))}
           </div>
           {/* Price Range */}
-          <div className="mb-6">
-            <h4 className="font-montserrat-medium mb-3">Price</h4>
+          <div className="mb-2">
+            <h4 className="font-montserrat-medium">Price</h4>
             <div className="space-y-2">
               <input
                 type="range"
