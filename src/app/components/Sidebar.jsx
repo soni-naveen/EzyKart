@@ -1,17 +1,24 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
 
-export default function Sidebar({ isOpen, onClose }) {
+function SidebarContent({ isOpen, onClose }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
-  const categories = ["All", "Electronics", "Clothing", "Furniture", "Fitness", "Accessories"];
+  const categories = [
+    "All",
+    "Electronics",
+    "Clothing",
+    "Furniture",
+    "Fitness",
+    "Accessories",
+  ];
 
   useEffect(() => {
     const categoryParam = searchParams.get("category");
@@ -154,5 +161,17 @@ export default function Sidebar({ isOpen, onClose }) {
         </div>
       </div>
     </>
+  );
+}
+
+function SidebarSkeleton() {
+  return <>Loading...</>;
+}
+
+export default function Sidebar({ isOpen, onClose }) {
+  return (
+    <Suspense fallback={<SidebarSkeleton />}>
+      <SidebarContent isOpen={isOpen} onClose={onClose} />
+    </Suspense>
   );
 }

@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, Suspense } from "react";
 import { Search, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useCartStore } from "@/app/lib/store";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Navbar() {
+function NavbarContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const totalItems = useCartStore((state) => state.getTotalItems());
   const router = useRouter();
@@ -20,15 +20,6 @@ export default function Navbar() {
       router.push(`/?${params.toString()}`);
     }
   };
-
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return <p className="text-xs sm:text-sm bg-blue-800 p-6.5 text-white text-center">Loading...</p>;
-  }
 
   return (
     <>
@@ -70,5 +61,34 @@ export default function Navbar() {
         </div>
       </header>
     </>
+  );
+}
+
+function NavbarSkeleton() {
+  return (
+    <header className="sticky top-0 bg-blue-800 text-white p-4">
+      <div className="mx-auto flex items-center justify-between">
+        <div className="text-base xs:text-xl sm:text-2xl font-montserrat-medium">
+          Logo
+        </div>
+        <div className="flex-1 max-w-md mx-4 sm:mx-8">
+          <div className="relative">
+            <div className="w-full pl-7 xs:pl-10 pr-4 py-2 rounded-lg bg-gray-200 animate-pulse h-10"></div>
+          </div>
+        </div>
+        <div className="flex items-center space-x-2 bg-blue-900 px-3 sm:px-4 py-2 rounded-lg">
+          <ShoppingCart className="w-4 sm:w-5 h-4 sm:h-5" />
+          <span className="text-xs xs:text-sm sm:text-base">Cart</span>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export default function Navbar() {
+  return (
+    <Suspense fallback={<NavbarSkeleton />}>
+      <NavbarContent />
+    </Suspense>
   );
 }

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Filter } from "lucide-react";
 import { Products } from "./lib/data";
 import Sidebar from "./components/Sidebar";
 import ProductCard from "./components/ProductCard";
 
-export default function Home() {
+function HomeContent() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const searchParams = useSearchParams();
 
@@ -104,5 +104,60 @@ export default function Home() {
         </div>
       </div>
     </div>
+  );
+}
+
+function HomePageSkeleton() {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <div className="container mx-auto px-4 pt-2 pb-10 lg:pt-8 lg:pb-10">
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Sidebar Skeleton */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg p-6 shadow-sm">
+              <div className="animate-pulse space-y-4">
+                <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+                <div className="space-y-2">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                  <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Grid Skeleton */}
+          <div className="lg:col-span-3">
+            <div className="flex justify-between items-center mb-6 lg:hidden">
+              <div className="h-8 bg-gray-200 rounded w-40 animate-pulse"></div>
+              <div className="h-10 bg-gray-200 rounded w-24 animate-pulse"></div>
+            </div>
+            <div className="hidden lg:block h-8 bg-gray-200 rounded w-48 mb-6 animate-pulse"></div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-lg shadow-sm p-4 animate-pulse"
+                >
+                  <div className="aspect-square bg-gray-200 rounded-lg mb-4"></div>
+                  <div className="h-5 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<HomePageSkeleton />}>
+      <HomeContent />
+    </Suspense>
   );
 }
