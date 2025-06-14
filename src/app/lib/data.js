@@ -11,7 +11,7 @@ export const Products = [
   },
   {
     id: 2,
-    title: "Wireless Headphones",
+    title: "Headphones",
     price: 149,
     category: "Electronics",
     image: "/assets/headphones.jpeg",

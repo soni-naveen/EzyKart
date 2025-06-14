@@ -73,16 +73,16 @@ export default function Home() {
           <div className="lg:col-span-3">
             {/* Mobile Filter Button */}
             <div className="flex justify-between items-center mb-6 lg:hidden">
-              <h1 className="text-2xl font-bold">Products</h1>
+              <h1 className="text-lg sm:text-xl font-montserrat-medium">Product Listing</h1>
               <button
                 onClick={() => setIsSidebarOpen(true)}
-                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
               >
-                <Filter className="w-4 h-4" />
-                <span>Filters</span>
+                <Filter className="w-3 sm:w-4 h-3 sm:h-4" />
+                <span className="text-sm sm:text-base">Filters</span>
               </button>
             </div>
-            <h2 className="text-2xl font-montserrat-bold mb-6">
+            <h2 className="hidden lg:block text-2xl font-montserrat-medium mb-6">
               Product Listing
             </h2>
             {filteredProducts.length === 0 ? (
