@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useCallback, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import * as Slider from "@radix-ui/react-slider";
+import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
 function SidebarContent({ isOpen, onClose }) {
@@ -88,15 +90,20 @@ function SidebarContent({ isOpen, onClose }) {
   );
 
   const handlePriceChange = useCallback(
-    (e) => {
-      const value = Number.parseInt(e.target.value);
-      const newPriceRange = [priceRange[0], value];
-      setPriceRange(newPriceRange);
-      updateURL(selectedCategories, newPriceRange);
-    },
-    [selectedCategories, priceRange, updateURL]
-  );
+    (values) => {
+      const [min, max] = values;
 
+      // Enforce minimum gap of 10 and prevent crossover
+      const clampedMin = Math.min(min, priceRange[1] - 10);
+      const clampedMax = Math.max(max, priceRange[0] + 10);
+
+      const newRange = [clampedMin, clampedMax];
+
+      setPriceRange(newRange);
+      updateURL(selectedCategories, newRange);
+    },
+    [priceRange, selectedCategories, updateURL]
+  );
   return (
     <>
       {/* Mobile Overlay */}
@@ -144,17 +151,43 @@ function SidebarContent({ isOpen, onClose }) {
           <div className="mb-2">
             <h4 className="font-montserrat-medium">Price</h4>
             <div className="space-y-2">
-              <input
-                type="range"
-                min="0"
-                max="1000"
-                value={priceRange[1]}
-                onChange={handlePriceChange}
-                className="w-full accent-sky-400"
-              />
-              <div className="flex justify-between text-sm">
-                <span>$0</span>
-                <span>${priceRange[1]}</span>
+              <Slider.Root
+                className="relative flex items-center select-none touch-none w-full h-5"
+                min={0}
+                max={1000}
+                step={10}
+                value={priceRange}
+                onValueChange={handlePriceChange}
+              >
+                <Slider.Track className="bg-gray-300 relative grow rounded-full h-1">
+                  <Slider.Range className="absolute bg-sky-500 rounded-full h-full" />
+                </Slider.Track>
+                {priceRange.map((_, i) => (
+                  <Slider.Thumb
+                    key={i}
+                    className="block w-5 h-5 bg-white border-2 border-sky-500 rounded-full shadow transition-all focus:outline-none focus:ring focus:ring-sky-300"
+                  />
+                ))}
+              </Slider.Root>
+              <div className="flex justify-between text-sm mt-2">
+                <motion.span
+                  key={priceRange[0]}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-white"
+                >
+                  ${priceRange[0]}
+                </motion.span>
+                <motion.span
+                  key={priceRange[1]}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-white"
+                >
+                  ${priceRange[1]}
+                </motion.span>
               </div>
             </div>
           </div>

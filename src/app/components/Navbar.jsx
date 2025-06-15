@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import { Search, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useCartStore } from "@/app/lib/store";
@@ -20,6 +20,19 @@ function NavbarContent() {
       router.push(`/?${params.toString()}`);
     }
   };
+  
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <p className="text-xs sm:text-sm bg-blue-800 p-6.5 text-white text-center">
+        Loading...
+      </p>
+    );
+  }
 
   return (
     <>

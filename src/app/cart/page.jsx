@@ -60,19 +60,19 @@ export default function Cart() {
               </div>
 
               <div className="flex flex-row-reverse xs:flex-row items-center gap-4">
-                <div className="flex items-center border rounded-lg">
+                <div className="flex items-center border border-gray-300 rounded-lg">
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                    className="p-2 hover:bg-gray-100"
+                    className="p-2 cursor-pointer"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="px-4 py-1 sm:py-1.5 border-x">
+                  <span className="px-3.5 py-1 border-x border-gray-300">
                     {item.quantity}
                   </span>
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                    className="p-2 hover:bg-gray-100"
+                    className="p-2 cursor-pointer"
                   >
                     <Plus className="w-4 h-4" />
                   </button>

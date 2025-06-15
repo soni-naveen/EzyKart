@@ -3,7 +3,14 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { Star, Minus, Plus, ShoppingCart, Check } from "lucide-react";
+import {
+  Star,
+  Minus,
+  Plus,
+  ShoppingCart,
+  Check,
+  ArrowLeft,
+} from "lucide-react";
 import { Products } from "@/app/lib/data";
 import { useCartStore } from "@/app/lib/store";
 import NotFound from "@/app/not-found";
@@ -39,6 +46,14 @@ export default function ProductDetailPage() {
 
   return (
     <div className="container mx-auto py-8 px-2">
+      <button
+        onClick={() => {
+          router.back();
+        }}
+        className="mb-6 lg:ml-5 flex items-center gap-2 text-blue-600 font-montserrat-medium hover:text-blue-800 cursor-pointer"
+      >
+        <ArrowLeft size={20} /> Back
+      </button>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Image Section */}
         <div className="space-y-4">
@@ -97,16 +112,16 @@ export default function ProductDetailPage() {
               <div className="flex items-center border border-gray-300 rounded-lg">
                 <button
                   onClick={decrementQuantity}
-                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
+                  className="px-4 py-2 cursor-pointer transition-colors"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="px-5 py-2 font-semibold border-x border-gray-300">
+                <span className="px-5 py-2 border-x border-gray-300 font-semibold">
                   {quantity}
                 </span>
                 <button
                   onClick={incrementQuantity}
-                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
+                  className="px-4 py-2 cursor-pointer transition-colors"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
