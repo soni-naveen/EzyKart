@@ -42,8 +42,8 @@ function NavbarContent() {
             href="/"
             className="text-base xs:text-xl sm:text-2xl font-montserrat-medium"
           >
-            <span className="hidden md:inline">MegaBasket</span>
-            <span className="md:hidden">MB</span>
+            <span className="hidden md:inline">EzyKart</span>
+            <span className="md:hidden">EK</span>
           </Link>
           <form
             onSubmit={handleSearch}

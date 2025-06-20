@@ -77,9 +77,9 @@ function HomeContent() {
         <div className="grid place-items-center h-screen inset-0 z-100 fixed bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400">
           <div className="flex flex-col items-center justify-center">
             <span className="font-montserrat-bold text-3xl text-blue-800 pb-2">
-              MegaBasket
+              EzyKart
             </span>
-            <span className="text-2xl text-blue-700">Items you’ll love...</span>
+            <span className="text-xl text-blue-700">Shop Smart, Shop Ezy</span>
           </div>
         </div>
       ) : (
