@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata = {
-  title: "WBS - WhatBytes Store",
+  title: "MegaBasket - Items you’ll love",
   description: "Modern e-commerce store built with Next.js",
 };
 

@@ -3,9 +3,9 @@ import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-blue-900 text-white p-6 pt-12 text-xs xs:text-sm sm:text-base">
+    <footer className="bg-blue-900 text-white p-6 py-12 text-xs xs:text-sm sm:text-base">
       <div className="container mx-auto grid md:grid-cols-3 gap-8">
-        <div>
+        <div className="md:place-self-center">
           <h3 className="text-base xs:text-lg sm:text-xl font-montserrat-medium mb-4">
             Filters
           </h3>
@@ -23,7 +23,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="md:place-self-center">
           <h3 className="text-base xs:text-lg sm:text-xl font-montserrat-medium mb-4">
             About Us
           </h3>
@@ -41,7 +41,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="md:place-self-center">
           <h3 className="text-base xs:text-lg sm:text-xl font-montserrat-medium mb-4">
             Follow Us
           </h3>
@@ -57,9 +57,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="container mx-auto mt-4 pt-4">
-        <p>© 2024 American</p>
       </div>
     </footer>
   );
