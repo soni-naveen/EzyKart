@@ -36,7 +36,7 @@ function NavbarContent() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-blue-800 text-white p-4">
+      <header className="sticky top-0 z-50 max-w-[1800px] mx-auto bg-blue-800 text-white p-4">
         <div className="mx-auto flex items-center justify-between">
           <Link
             href="/"
