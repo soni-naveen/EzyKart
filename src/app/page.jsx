@@ -136,7 +136,7 @@ function HomeContent() {
 
 function HomePageSkeleton() {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 max-w-[1800px] mx-auto">
       <div className="container mx-auto px-4 pt-2 pb-10 lg:pt-8 lg:pb-10">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sidebar Skeleton */}

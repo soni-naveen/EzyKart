@@ -28,9 +28,22 @@ function NavbarContent() {
 
   if (!isClient) {
     return (
-      <p className="text-xs sm:text-sm bg-blue-800 p-6.5 text-white text-center">
-        Loading...
-      </p>
+      <div className="sticky top-0 z-50 max-w-[1800px] mx-auto bg-blue-800 text-white p-4">
+        <div className="mx-auto flex items-center justify-between">
+          <div className="text-base xs:text-xl sm:text-2xl font-montserrat-medium">
+            EzyKart
+          </div>
+          <div className="flex-1 max-w-md mx-4 sm:mx-8">
+            <div className="relative">
+              <div className="w-full border border-white/50 pl-7 xs:pl-10 pr-4 py-2 rounded-lg bg-transparent h-10"></div>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2 bg-blue-900 px-3 sm:px-4 py-2 rounded-lg">
+            <ShoppingCart className="w-4 sm:w-5 h-4 sm:h-5" />
+            <span className="text-xs xs:text-sm sm:text-base">Cart</span>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -80,10 +93,10 @@ function NavbarContent() {
 
 function NavbarSkeleton() {
   return (
-    <header className="sticky top-0 bg-blue-800 text-white p-4">
+    <header className="sticky top-0 z-50 max-w-[1800px] mx-auto bg-blue-800 text-white p-4">
       <div className="mx-auto flex items-center justify-between">
         <div className="text-base xs:text-xl sm:text-2xl font-montserrat-medium">
-          Logo
+          EzyKart
         </div>
         <div className="flex-1 max-w-md mx-4 sm:mx-8">
           <div className="relative">
