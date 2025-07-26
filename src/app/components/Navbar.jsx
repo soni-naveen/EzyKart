@@ -100,7 +100,7 @@ function NavbarSkeleton() {
         </div>
         <div className="flex-1 max-w-md mx-4 sm:mx-8">
           <div className="relative">
-            <div className="w-full pl-7 xs:pl-10 pr-4 py-2 rounded-lg bg-gray-200 animate-pulse h-10"></div>
+            <div className="w-full border border-white/50 pl-7 xs:pl-10 pr-4 py-2 rounded-lg bg-transparent h-10"></div>
           </div>
         </div>
         <div className="flex items-center space-x-2 bg-blue-900 px-3 sm:px-4 py-2 rounded-lg">
